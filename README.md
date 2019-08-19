@@ -78,3 +78,18 @@ target errors:
   - _from_file found, and is not allowed
   - !!python/unicode 'MPU is not allowed in device_has'
 ~~~
+
+
+## create mbed_app.json
+
+to utalize mbed  test configure platform.stdio and target.stdio 
+
+~~~
+touch mbed_app.json
+~~~
+
+to check how configuration is written use mbed compile --config
+
+~~~
+mbed compile -t gcc_arm -m BOARD_WD_CORE_G1 --config 
+~~~

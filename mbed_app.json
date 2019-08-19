@@ -1,0 +1,13 @@
+{
+    "target_overrides": {
+        "*": {
+            "platform.default-serial-baud-rate": 115200,
+            "platform.stdio-convert-newlines": true,
+            "platform.stdio-baud-rate": 115200,
+            "target.stdio_uart_tx": "PE_8",
+            "target.stdio_uart_rx": "PE_7",  
+            "target.console-uart": true,
+            "target.lse_available": false
+        }
+    }
+}
