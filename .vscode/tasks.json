@@ -100,5 +100,20 @@
             },
             "problemMatcher": []
         },
+        {
+            "label": "mbed test run trigger",
+            "type": "shell",
+            "command": "mbedhtrun",
+            "args": [
+                "--skip-flashing",
+                "--skip-reset",
+                "-p",
+                "COM10:115200"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "problemMatcher": []
+        }
     ]
 }

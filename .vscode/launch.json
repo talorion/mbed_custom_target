@@ -1,0 +1,62 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Client Core Test generic_tests(GDB)",
+            "type": "cppdbg",
+            "request": "launch",
+            "miDebuggerPath": "arm-none-eabi-gdb.exe",
+            "targetArchitecture": "ARM",
+            "stopAtEntry": true,
+            "program": "C:/dev/src/mbed_custom_target/BUILD/tests/BOARD_WD_CORE_G1/GCC_ARM-DEBUG/mbed-os/TESTS/mbed_drivers/generic_tests/generic_tests.elf",
+            "preLaunchTask": "mbed test compile generic_tests",
+            "setupCommands": [
+                {
+                    "text": "set remotetimeout 60"
+                },
+                {
+                    "text": "target remote localhost:3333"
+                },
+                {
+                    "text": "monitor halt"
+                },
+                {
+                    "text": "monitor reset init"
+                },
+                {
+                    "text": "file C:/dev/src/mbed_custom_target/BUILD/tests/BOARD_WD_CORE_G1/GCC_ARM-DEBUG/mbed-os/TESTS/mbed_drivers/generic_tests/generic_tests.elf"
+                },
+                {
+                    "text": "load"
+                },
+                {
+                    "text": "monitor reset halt"
+                }
+            ],
+            "customLaunchSetupCommands": [
+                {
+                    "text": "monitor reset init"
+                }
+            ],
+            "launchCompleteCommand": "exec-continue",
+            "debugServerPath": "openocd.exe",
+            "debugServerArgs": "-s C:/dev/bin/openocd/share/openocd/scripts -f board/st_nucleo_f4.cfg -c init -c \"reset init\"",
+            "serverStarted": "target halted due to debug-request, current mode: Thread",
+            "serverLaunchTimeout": 20000,
+            "filterStdout": false,
+            "filterStderr": true,
+            "externalConsole": true,
+            "cwd": "${cwd}",
+            "logging": {
+                "moduleLoad": true,
+                "trace": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "exceptions": true
+            },
+            "sourceFileMap": {
+                "/mnt/c": "C:/"
+            }
+        }
+    ]
+}
