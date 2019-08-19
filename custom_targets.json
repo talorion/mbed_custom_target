@@ -1,0 +1,68 @@
+{
+    "MCU_STM32F437": {
+        "inherits": [
+            "FAMILY_STM32"
+        ],
+        "core": "Cortex-M4F",
+        "release_versions": [
+            "5"
+        ],
+        "supported_toolchains": [
+            "ARM",
+            "GCC_ARM",
+            "IAR"
+        ],
+        "default_lib": "std",
+        "public": false,
+        "extra_labels_add": [
+            "STM",
+            "STM32F4",
+            "STM32F437",
+            "STM32F437xx",
+            "STM32F437xV"
+        ],
+        "device_has": [
+            "ANALOGIN",
+            "ANALOGOUT",
+            "INTERRUPTIN",
+            "PORTIN",
+            "PORTINOUT",
+            "PORTOUT",
+            "SERIAL",
+            "SERIAL_FC",
+            "SERIAL_ASYNCH",
+            "SLEEP",
+            "MPU"
+        ]
+    },
+    "BOARD_WD_CORE_G1": {
+        "inherits": [
+            "MCU_STM32F437"
+        ],
+        "extra_labels_add": [
+            "WD_CORE_G1",
+            "STM32F4",
+            "STM32F437",
+            "STM32F437xx",
+            "STM32F437xV"
+        ],
+        "public": true,
+        "config": {
+            "hse_value": {
+                "help": "HSE default value is 25MHz in HAL",
+                "value": "8000000",
+                "macro_name": "HSE_VALUE"
+            },
+            "clock_source": {
+                "help": "Mask value : USE_PLL_HSE_EXTC | USE_PLL_HSE_XTAL (need HW patch) | USE_PLL_HSI",
+                "value": "USE_PLL_HSE_XTAL",
+                "macro_name": "CLOCK_SOURCE"
+            },
+            "initial_stack_pointer": {
+                "help": "Set the value of the initilal stack pointer ussed in mbed-os/targets/TARGET_STM/mbed_rtx.h",
+                "value": "0x20030000UL",
+                "macro_name": "INITIAL_SP"
+            }
+        }
+    }
+}
