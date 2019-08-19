@@ -93,3 +93,12 @@ to check how configuration is written use mbed compile --config
 ~~~
 mbed compile -t gcc_arm -m BOARD_WD_CORE_G1 --config 
 ~~~
+
+## setup compile toolchain for vscode
+
+~~~
+mkdir .vscode
+touch .vscode/tasks.json
+~~~
+
+add tasks for compiling and running specific tests

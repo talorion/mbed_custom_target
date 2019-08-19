@@ -1,0 +1,104 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "mbed-os/tools/targets/lint.py",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "mbed-os/tools/targets/lint.py",
+                "targets",
+                "BOARD_WD_CORE_G1"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "mbed compile --config",
+            "type": "shell",
+            "command": "mbed",
+            "args": [
+                "compile",
+                "-t",
+                "gcc_arm",
+                "-m",
+                "BOARD_WD_CORE_G1",
+                "--config"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "mbed test compile generic_tests",
+            "type": "shell",
+            "command": "mbed",
+            "args": [
+                "test",
+                "-t",
+                "gcc_arm",
+                "-m",
+                "BOARD_WD_CORE_G1",
+                "--profile",
+                "mbed-os/tools/profiles/debug.json",
+                "--compile",
+                "-n",
+                "*generic_tests*"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}",
+                "shell": {
+                    "executable": "C:\\Windows\\System32\\bash.exe",
+                    "args": [
+                        "-c",
+                        "-i"
+                    ]
+                }
+            },
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "mbed test run generic_tests",
+            "type": "shell",
+            "command": "mbed",
+            "args": [
+                "test",
+                "-t",
+                "gcc_arm",
+                "-m",
+                "BOARD_WD_CORE_G1",
+                "--profile",
+                "mbed-os/tools/profiles/debug.json",
+                "--run",
+                "--copy=stflash",
+                "--reset=stflash",
+                "-n",
+                "*generic_tests*",
+                "-v"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "problemMatcher": []
+        },
+    ]
+}
