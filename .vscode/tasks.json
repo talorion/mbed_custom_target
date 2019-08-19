@@ -10,7 +10,7 @@
             "args": [
                 "mbed-os/tools/targets/lint.py",
                 "targets",
-                "BOARD_WD_CORE_G1"
+                "WD_CORE_G1"
             ],
             "options": {
                 "cwd": "${workspaceRoot}"
@@ -26,7 +26,7 @@
                 "-t",
                 "gcc_arm",
                 "-m",
-                "BOARD_WD_CORE_G1",
+                "WD_CORE_G1",
                 "--config"
             ],
             "options": {
@@ -43,7 +43,7 @@
                 "-t",
                 "gcc_arm",
                 "-m",
-                "BOARD_WD_CORE_G1",
+                "WD_CORE_G1",
                 "--profile",
                 "mbed-os/tools/profiles/debug.json",
                 "--compile",
@@ -85,7 +85,7 @@
                 "-t",
                 "gcc_arm",
                 "-m",
-                "BOARD_WD_CORE_G1",
+                "WD_CORE_G1",
                 "--profile",
                 "mbed-os/tools/profiles/debug.json",
                 "--run",

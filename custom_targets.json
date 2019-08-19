@@ -1,5 +1,5 @@
 {
-    "MCU_STM32F437": {
+    "STM32F437": {
         "inherits": [
             "FAMILY_STM32"
         ],
@@ -12,14 +12,16 @@
             "GCC_ARM",
             "IAR"
         ],
+        "default_toolchain": "GCC_ARM",
         "default_lib": "std",
         "public": false,
         "extra_labels_add": [
             "STM",
             "STM32F4",
-            "STM32F437",
             "STM32F437xx",
-            "STM32F437xV"
+            "STM32F437xV",
+            "MCU_STM32F437",
+            "TARGET_STM32F437"
         ],
         "device_has": [
             "ANALOGIN",
@@ -32,20 +34,23 @@
             "SERIAL_FC",
             "SERIAL_ASYNCH",
             "SLEEP",
-            "MPU"
+            "LPTICKER",
+            "RTC",
+            "TRNG",
+            "SLEEP",
+            "MPU",
+            "USTICKER",
+            "STDIO_MESSAGES",
+            "ERROR_RED"
         ]
     },
-    "BOARD_WD_CORE_G1": {
+    "WD_CORE_G1": {
         "inherits": [
-            "MCU_STM32F437"
+            "STM32F437"
         ],
         "extra_labels_add": [
-            "TARGET_WD_CORE_G1",
-            "WD_CORE_G1",
-            "STM32F4",
-            "STM32F437",
-            "STM32F437xx",
-            "STM32F437xV"
+            "BOARD_WD_CORE_G1",
+            "TARGET_WD_CORE_G1"
         ],
         "public": true,
         "config": {
@@ -68,6 +73,11 @@
                 "help": "used uart for stdio operations e.g.: testing",
                 "value": "UART_7",
                 "macro_name": "STDIO_UART"
+            },
+            "d11_configuration": {
+                "help": "Value: PA_7 for the default board configuration, PB_5 in case of solder bridge update (SB121 off/ SB122 on)",
+                "value": "PA_7",
+                "macro_name": "STM32_D11_SPI_ETHERNET_PIN"
             }
         }
     }

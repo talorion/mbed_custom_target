@@ -74,9 +74,9 @@ defined in linker script */
     .section  .text.Reset_Handler
   .weak  Reset_Handler
   .type  Reset_Handler, %function
-Reset_Handler:  
-  ldr   sp, =_estack     /* set stack pointer */
-
+Reset_Handler: 
+  ldr   sp, =_estack       /* set stack pointer */
+ 
 /* Copy the data segment initializers from flash to SRAM */  
   movs  r1, #0
   b  LoopCopyDataInit
@@ -108,9 +108,14 @@ LoopFillZerobss:
 /* Call the clock system intitialization function.*/
   bl  SystemInit   
 /* Call static constructors */
-    bl __libc_init_array
+  //bl __libc_init_array
 /* Call the application's entry point.*/
-  bl  main
+  //bl  main
+  // Calling the crt0 'cold-start' entry point. There __libc_init_array is called
+  // and when existing hardware_init_hook() and software_init_hook() before 
+  // starting main(). software_init_hook() is available and has to be called due 
+  // to initializsation when using rtos.
+  bl _start
   bx  lr    
 .size  Reset_Handler, .-Reset_Handler
 
@@ -135,9 +140,9 @@ Infinite_Loop:
 *******************************************************************************/
    .section  .isr_vector,"a",%progbits
   .type  g_pfnVectors, %object
-  .size  g_pfnVectors, .-g_pfnVectors
- 
-g_pfnVectors:
+  .size  g_pfnVectors, .-g_pfnVectors 
+  
+  g_pfnVectors:
   .word  _estack
   .word  Reset_Handler
 
@@ -236,7 +241,7 @@ g_pfnVectors:
   .word     OTG_HS_WKUP_IRQHandler            /* USB OTG HS Wakeup through EXTI */                         
   .word     OTG_HS_IRQHandler                 /* USB OTG HS                   */                   
   .word     DCMI_IRQHandler                   /* DCMI                         */                   
-  .word     CRYP_IRQHandler                   /* CRYP crypto                  */                   
+  .word     0                                 /* Reserved                     */                   
   .word     HASH_RNG_IRQHandler               /* Hash and Rng                 */
   .word     FPU_IRQHandler                    /* FPU                          */
   .word     UART7_IRQHandler                  /* UART7                        */      
@@ -245,8 +250,8 @@ g_pfnVectors:
   .word     SPI5_IRQHandler                   /* SPI5 						  */
   .word     SPI6_IRQHandler                   /* SPI6						  */
   .word     SAI1_IRQHandler                   /* SAI1						  */
-  .word     0                                 /* Reserved			          */
-  .word     0                                 /* Reserved			          */
+  .word     LTDC_IRQHandler                   /* LTDC           		      */
+  .word     LTDC_ER_IRQHandler                /* LTDC error          	      */
   .word     DMA2D_IRQHandler                  /* DMA2D                        */
   
 /*******************************************************************************
@@ -520,9 +525,6 @@ g_pfnVectors:
    .weak      DCMI_IRQHandler            
    .thumb_set DCMI_IRQHandler,Default_Handler
                                    
-   .weak      CRYP_IRQHandler            
-   .thumb_set CRYP_IRQHandler,Default_Handler
-                                   
    .weak      HASH_RNG_IRQHandler                  
    .thumb_set HASH_RNG_IRQHandler,Default_Handler   
 
@@ -547,6 +549,12 @@ g_pfnVectors:
    .weak      SAI1_IRQHandler            
    .thumb_set SAI1_IRQHandler,Default_Handler
 
+   .weak      LTDC_IRQHandler            
+   .thumb_set LTDC_IRQHandler,Default_Handler
+
+   .weak      LTDC_ER_IRQHandler            
+   .thumb_set LTDC_ER_IRQHandler,Default_Handler
+
    .weak      DMA2D_IRQHandler            
    .thumb_set DMA2D_IRQHandler,Default_Handler
 
@@ -554,5 +562,3 @@ g_pfnVectors:
  
    
    
-
- 

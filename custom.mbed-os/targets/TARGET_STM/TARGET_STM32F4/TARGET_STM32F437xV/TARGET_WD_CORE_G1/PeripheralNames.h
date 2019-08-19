@@ -43,6 +43,10 @@ typedef enum {
 } ADCName;
 
 typedef enum {
+    DAC_1 = (int)DAC_BASE
+} DACName;
+
+typedef enum {
     UART_1 = (int)USART1_BASE,
     UART_2 = (int)USART2_BASE,
     UART_3 = (int)USART3_BASE,
@@ -53,6 +57,7 @@ typedef enum {
     UART_8 = (int)UART8_BASE
 } UARTName;
 
+#define DEVICE_SPI_COUNT 6
 typedef enum {
     SPI_1 = (int)SPI1_BASE,
     SPI_2 = (int)SPI2_BASE,
@@ -67,11 +72,6 @@ typedef enum {
     I2C_2 = (int)I2C2_BASE,
     I2C_3 = (int)I2C3_BASE
 } I2CName;
-
-typedef enum {
-    DMA_1 = (int)DMA1_BASE,
-    DMA_2 = (int)DMA2_BASE
-} DMAName;
 
 typedef enum {
     PWM_1  = (int)TIM1_BASE,
@@ -89,8 +89,9 @@ typedef enum {
 } PWMName;
 
 typedef enum {
-    DAC_1 = (int)DAC_BASE
-} DACName;
+    CAN_1 = (int)CAN1_BASE,
+    CAN_2 = (int)CAN2_BASE
+} CANName;
 
 #ifdef __cplusplus
 }

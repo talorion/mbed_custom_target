@@ -19,25 +19,21 @@
 
 /*!< Uncomment the following line if you need to relocate your vector Table in
      Internal SRAM. */
-/* note: if uVisor is present the definition must go in system_init_pre.c */
 /* #define VECT_TAB_SRAM */
 #define VECT_TAB_OFFSET  0x00 /*!< Vector Table base offset field.
                                    This value must be a multiple of 0x200. */
 
-/* this function is needed to peform hardware initialization that must happen
- * before the uVisor; the whole SystemInit function for the STM32F4 cannot be
- * put here as it depends on some APIs that need uVisor to be enabled */
 void SystemInitPre(void)
 {
     /* FPU settings ------------------------------------------------------------*/
 #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
-    SCB->CPACR |= ((3UL << 10 * 2) | (3UL << 11 * 2)); /* set CP10 and CP11 Full Access */
+    SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
 #endif
 
     /* Configure the Vector Table location add offset address ------------------*/
 #ifdef VECT_TAB_SRAM
     SCB->VTOR = SRAM_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
 #else
-    SCB->VTOR = FLASH_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
+  SCB->VTOR = NVIC_FLASH_VECTOR_ADDRESS; /* Vector Table Relocation in Internal FLASH */
 #endif
 }

@@ -7,7 +7,13 @@
             "target.stdio_uart_tx": "PE_8",
             "target.stdio_uart_rx": "PE_7",  
             "target.console-uart": true,
-            "target.lse_available": false
+            "target.lse_available": false,
+            "events.shared-eventsize": 2048,
+            "events.shared-highprio-eventsize": 2048,
+            "events.shared-highprio-stacksize": 2048,
+            "rtos.idle-thread-stack-size-debug-extra": 0,
+            "platform.use-mpu": 0,
+            "target.deep-sleep-latency": 0
         }
     }
 }

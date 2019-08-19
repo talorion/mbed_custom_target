@@ -1,7 +1,7 @@
 {
     "07990221012A69193E6EFFBD": {
-        "platform_name": "BOARD_WD_CORE_G1",
-        "platform_name_unique": "BOARD_WD_CORE_G1[0]",
+        "platform_name": "WD_CORE_G1",
+        "platform_name_unique": "WD_CORE_G1[0]",
         "target_id": "303636384646333933343330353333"
     }
 }
