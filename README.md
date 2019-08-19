@@ -182,3 +182,10 @@ rewritten
 ### custom.mbed-os/targets/TARGET_STM/TARGET_STM32F4/TARGET_STM32F437xV/TARGET_WD_CORE_G1/system_clock.c
 
 using the same as in a prevoius implementaion (which works)
+
+
+## setup mbedls so it recognises the new target
+
+~~~
+touch mbedls.json
+~~~
